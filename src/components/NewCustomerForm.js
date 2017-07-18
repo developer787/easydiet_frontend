@@ -4,22 +4,37 @@ import SubmitButton from './SubmitButton'
 class NewCustomerForm extends React.Component {
 	constructor(props) {
 		super(props)
-		const {name} = props
-		this.state = {}
-		this.name = name
+			this.state = {}
 		this.handleClick = this.handleClick.bind(this)
-	
+		this.handleChange = this.handleChange.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 	handleClick(event){
-		console.log(this)
+		console.log('Help!')
+	}
+	handleChange(event){
+		console.log('Change!')
+	}
+	handleSubmit(event){
+		console.log('Submit!')
+		event.preventDefault()
 	}
 	render(){
 		return (
-				<div>
+			<div>
+				<form onSubmit={this.handleSubmit}>
+					<label>
+						Name:
+						<input 
+						  type="text" 
+							value={this.state.value} 
+							onChange={this.handleChange} />
+						</label>
+						<SubmitButton handleClick={this.handleClick}/>
+					</form>
 					<p>
 						My name is {this.state.name}
 					</p>
-					<SubmitButton handleClick={this.handleClick}/>
 				</div>
 				)
 	}
