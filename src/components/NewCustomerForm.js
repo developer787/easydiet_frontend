@@ -14,6 +14,9 @@ class NewCustomerForm extends React.Component {
 	}
 	handleChange(event){
 		console.log('Change!')
+		const newState = {}
+		newState.name = event.target.value
+		this.setState(newState)
 	}
 	handleSubmit(event){
 		console.log('Submit!')
