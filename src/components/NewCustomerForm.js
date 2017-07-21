@@ -148,7 +148,6 @@ class NewCustomerForm extends React.Component {
       {this.createCheckboxes()}
       </div>
       <p>Data: {this.state.response}</p>
-      </form>
       <div className={this.state.formStatus}>
       <h4>
       Informacion a guardarse
@@ -168,6 +167,7 @@ class NewCustomerForm extends React.Component {
       <br />
       <SubmitButton handleClick={this.handleClick}/>
       </div>
+      </form>
       </div>
     )
   }
