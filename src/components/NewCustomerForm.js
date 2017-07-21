@@ -122,6 +122,7 @@ class NewCustomerForm extends React.Component {
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
+      <div className={this.state.formStatus}>
       <label>
       Nombre:
         <input 
@@ -130,6 +131,7 @@ class NewCustomerForm extends React.Component {
       value={this.state.nombre || ''} 
       onChange={this.handleChange} />
       </label>
+      <br />
       <label>
       Apellido:
         <input 
@@ -138,6 +140,7 @@ class NewCustomerForm extends React.Component {
       value={this.state.apellido || ''}
       onChange={this.handleChange} />
       </label>
+      </div>
       <br />
       <br />
       <div className={this.state.formStatus}>
