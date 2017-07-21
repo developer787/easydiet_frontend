@@ -1,6 +1,9 @@
 import React from 'react'
+import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
 import Checkbox from './Checkbox'
+import ObjectID from 'bson-objectid'
+const id = ObjectID.generate()
 
 const items = [
   'Carne',
@@ -14,7 +17,7 @@ const Alergias = []
 class NewCustomerForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {id, formStatus: 'default', ul: 'aligned'}
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -45,12 +48,12 @@ class NewCustomerForm extends React.Component {
 
   }
   handleSubmit(event){
-    console.log('Submit!')
+    console.log(this.state.id)
     event.preventDefault()
     const self = this
     const url = 'https://easydiet-backend-developer787.c9users.io/users'
-    const {nombre, apellido, alergias } = self.state
-    const payload = {nombre, apellido, alergias }
+    const {id, nombre, apellido, alergias } = self.state
+    const payload = {id, nombre, apellido, alergias }
     const urlOpts = {
       method: 'post',
       headers: {
@@ -68,7 +71,7 @@ class NewCustomerForm extends React.Component {
       return response.json();
     })
     .then(function(data) {
-      self.setState({ saludo: data.body });
+      self.setState({ response: data.body });
     });
   }
   handleInputChange(event) {
@@ -109,9 +112,9 @@ class NewCustomerForm extends React.Component {
     items.map(this.createCheckbox)
   )
   incluirAlergia = alergia =>
-  <div key={alergia}>
+  <li key={alergia}>
   {alergia}
-  </div>
+  </li>
   listarAlergias = () => (
     Alergias.map(this.incluirAlergia)
   )
@@ -137,14 +140,31 @@ class NewCustomerForm extends React.Component {
       </label>
       <br />
       <br />
+      <div className={this.state.formStatus}>
+      <p>Seleccione todo ingriediente que no desea incluir en la dieta del cliente.</p>
       {this.createCheckboxes()}
-      <SubmitButton handleClick={this.handleClick}/>
-      <p>Data: {this.state.saludo}</p>
+      </div>
+      <p>Data: {this.state.response}</p>
       </form>
-      <p>
-      Hola, {this.state.nombre} {this.state.apellido}
-      </p>
+      <div className={this.state.formStatus}>
+      <h4>
+      Informacion a guardarse
+      </h4>
+      <span>Nombre: </span>
+        <br/>
+      <h5>
+      {this.state.nombre} {this.state.apellido}
+      </h5>
+      <br />
+      <span>
+      Ingredientes no deseados:
+      </span>
+      <ul className={this.state.ul}>
       {this.listarAlergias()}
+      </ul>
+      <br />
+      <SubmitButton handleClick={this.handleClick}/>
+      </div>
       </div>
     )
   }
