@@ -4,6 +4,11 @@
   max-width: 600px;
   margin: 0 auto;
   border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.default button[type=submit]{
+  margin: 20px;
 }
 .default input[type=text] {
   width: 70%;
