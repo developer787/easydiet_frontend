@@ -10,3 +10,8 @@
 .header span {
   font-size: 5vmin;
 }
+.header .link {
+  text-decoration: none;
+  color: white;
+  padding: 8px;
+}

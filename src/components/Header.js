@@ -1,13 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+ import { Link } from 'react-router-dom'
 import './Header.css'
 const items = ['/', '/platos', '/reportes']
 
 const createNav = (label, i) => {
-    const test = 'test'
+    let test = 'test'
+    switch(label){
+      case '/':
+        test = 'Clientes'
+        break;
+      case '/platos':
+        test = 'Platos'
+        break;
+      default:
+        test = 'Reportes'
+        break;
+    }
   return (
     <Link key={i} to={label}>
-      {test}
+      <span className={'link'} >{test}</span>
     </Link>
   )
   }
