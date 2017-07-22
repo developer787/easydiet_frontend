@@ -52,7 +52,7 @@ class NewCustomerForm extends React.Component {
     console.log(this.state.id)
     event.preventDefault()
     const self = this
-    const url = 'https://easydietpr-backend/api'
+    const url = 'https://easydiet-backend-developer787.c9users.io/api'
     const {id, nombre, apellido, alergias } = self.state
     const payload = {id, nombre, apellido, alergias }
     const urlOpts = {
