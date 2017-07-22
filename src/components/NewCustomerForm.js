@@ -3,7 +3,8 @@ import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
 import Checkbox from './Checkbox'
 import ObjectID from 'bson-objectid'
-const id = ObjectID.generate()
+const time = Date.now()
+const id = ObjectID.generate(time)
 
 const items = [
   'Carne',
@@ -71,7 +72,9 @@ class NewCustomerForm extends React.Component {
       return response.json();
     })
     .then(function(data) {
-      self.setState({ response: data.body });
+      self.setState({ 
+        response: data,
+        formStatus: 'saved'});
     });
   }
   handleInputChange(event) {
@@ -97,7 +100,7 @@ class NewCustomerForm extends React.Component {
       }
     } else {
       this.selectedCheckboxes.add(label);
-      Alergias.push(label)
+      Alergias.push(label.toLowerCase())
       this.setState({alergias: Alergias})
     }
   }
