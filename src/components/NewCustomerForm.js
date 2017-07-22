@@ -3,8 +3,6 @@ import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
 import Checkbox from './Checkbox'
 import ObjectID from 'bson-objectid'
-const time = Date.now()
-const id = ObjectID.generate(time)
 
 const items = [
   'Carne',
@@ -14,11 +12,13 @@ const items = [
   'Cebolla',
   'Nueces'
 ]
-const Alergias = []
 class NewCustomerForm extends React.Component {
   constructor(props) {
+    
+const time = Date.now()
+const id = ObjectID.generate(time)
     super(props)
-    this.state = {id, formStatus: 'default', ul: 'aligned', response: {}}
+    this.state = {id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -91,9 +91,10 @@ class NewCustomerForm extends React.Component {
   }
 
   toggleCheckbox = label => {
+      const index = this.state.alergias.indexOf(label.toLowerCase(),0)
+      const Alergias = this.state.alergias
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label)
-      const index = Alergias.indexOf(label,0)
       if (index > -1) {
         Alergias.splice(index, 1)
         this.setState({alergias: Alergias})
@@ -118,10 +119,19 @@ class NewCustomerForm extends React.Component {
   <li key={alergia}>
   {alergia}
   </li>
-  listarAlergias = () => (
-    Alergias.map(this.incluirAlergia)
-  )
+  listarAlergias = () => {
+    const Alergias = this.state.alergias
+  return  Alergias.map(this.incluirAlergia)
+  }
   render(){
+    const message = this.state.response.message ? this.state.response.message : '*verificar datos antes de guardar.';
+
+        let p = null;
+            if (message.charAt(0) === '*') {
+                    p = <p></p>;
+                        } else {
+                                p = <p>{message}</p>;
+                                    }
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
@@ -152,7 +162,6 @@ class NewCustomerForm extends React.Component {
       </p>
       {this.createCheckboxes()}
       </div>
-      <p>Data: {!this.state.response.id ? '...' : this.state.response.id }</p>
       <div className={this.state.formStatus}>
       <h4>
       Informacion a guardarse
@@ -170,6 +179,7 @@ class NewCustomerForm extends React.Component {
       {this.listarAlergias()}
       </ul>
       <br />
+      {p}
       <SubmitButton handleClick={this.handleClick}/>
       </div>
       </form>
