@@ -18,7 +18,7 @@ const Alergias = []
 class NewCustomerForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {id, formStatus: 'default', ul: 'aligned'}
+    this.state = {id, formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -147,10 +147,12 @@ class NewCustomerForm extends React.Component {
       <br />
       <br />
       <div className={this.state.formStatus}>
-      <p>Seleccione todo ingriediente que no desea incluir en la dieta del cliente.</p>
+      <p className='aligned'>
+      Seleccione todo ingriediente que no desea incluir en la dieta del cliente.
+      </p>
       {this.createCheckboxes()}
       </div>
-      <p>Data: {this.state.response}</p>
+      <p>Data: {!this.state.response.id ? '...' : this.state.response.id }</p>
       <div className={this.state.formStatus}>
       <h4>
       Informacion a guardarse
