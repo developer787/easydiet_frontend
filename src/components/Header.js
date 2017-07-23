@@ -32,6 +32,9 @@ const Header = ()=>
   <div className='header'>
    <strong>Easy Diet PR Meal Generator</strong>
    <br />
+   <hr />
+   <div className='navBar'>
    {createNavbar()}
+   </div>
   </div>
 export default Header

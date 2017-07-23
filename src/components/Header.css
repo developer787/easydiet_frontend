@@ -7,12 +7,14 @@
   top: 0px;
   width: 100%;
 }
-.header span {
-  font-size: 5vmin;
-}
 .header .link {
   font-variant: small-caps;
   text-decoration: none;
   color: white;
   padding: 8px;
+  font-size: 4vmin;
+}
+.header .navBar {
+  width: 100%;
+  margin-top: 10px;
 }
