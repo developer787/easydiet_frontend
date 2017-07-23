@@ -11,6 +11,7 @@
   font-size: 5vmin;
 }
 .header .link {
+  font-variant: small-caps;
   text-decoration: none;
   color: white;
   padding: 8px;

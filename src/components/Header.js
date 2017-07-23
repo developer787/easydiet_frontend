@@ -1,13 +1,16 @@
 import React from 'react'
  import { Link } from 'react-router-dom'
 import './Header.css'
-const items = ['/', '/platos', '/reportes']
+const items = ['/', '/listado', '/platos', '/reportes']
 
 const createNav = (label, i) => {
     let test = 'test'
     switch(label){
       case '/':
         test = 'Clientes'
+        break;
+      case '/listado':
+        test = 'Listado'
         break;
       case '/platos':
         test = 'Platos'
@@ -17,7 +20,7 @@ const createNav = (label, i) => {
         break;
     }
   return (
-    <Link key={i} to={label}>
+    <Link className={'link'} key={i} to={label}>
       <span className={'link'} >{test}</span>
     </Link>
   )

@@ -154,27 +154,28 @@ const id = ObjectID.generate(time)
       onChange={this.handleChange} />
       </label>
       </div>
-      <br />
-      <br />
       <div className={this.state.formStatus}>
       <p className='aligned'>
       Seleccione todo ingriediente que no desea incluir en la dieta del cliente.
       </p>
+      <hr />
       {this.createCheckboxes()}
       </div>
       <div className={this.state.formStatus}>
-      <h4>
+      <p>
       Informacion a guardarse
-      </h4>
-      <span>Nombre: </span>
-        <br/>
-      <h5>
+      </p>
+      <hr />
+      <p className={'aligned'}>
+      Nombre Completo: 
+      </p>
+      <strong>
       {this.state.nombre} {this.state.apellido}
-      </h5>
+      </strong>
       <br />
-      <span>
+      <p className={'aligned'}>
       Ingredientes no deseados:
-      </span>
+      </p>
       <ul className={this.state.ul}>
       {this.listarAlergias()}
       </ul>
