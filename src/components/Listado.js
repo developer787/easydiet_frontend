@@ -5,17 +5,37 @@ const cliente = (self) => {
   console.log(users)
   const user = () => {
     if(users) {
-    return users.map((customer) => <tr><td><span>{customer.nombre}</span></td></tr>)
+    return users.map((customer) => 
+	<tr>
+	  <td>
+	    <span>{customer.nombre}</span>
+	  </td>
+	  <td>
+	    <span>{customer.apellido}</span>
+	  </td>
+	  <td>
+	      {customer.alergias.map(a=>
+	        <div>{a}</div>
+	      )}
+	  </td>
+	</tr>)
 
     }
     return <span> Buscando Clientes...</span>
   }
   return (
-<table>
+    <div className='listado'>
+<table className='listado'>
   <thead>
     <tr>
       <td>
         <span>Nombre</span>
+      </td>
+      <td>
+        <span>Apellido</span>
+      </td>
+      <td>
+        <span>Alergias</span>
       </td>
     </tr>
   </thead>
@@ -23,6 +43,7 @@ const cliente = (self) => {
     {user()} 
   </tbody>
 </table>
+    </div>
   )
 }
 class Listado extends Component {

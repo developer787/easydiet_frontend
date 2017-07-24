@@ -10,6 +10,10 @@
   border-radius: 5px;
   background-color: #FFFFFF;
 }
+.default .listado {
+  table-layout: fixed;
+  background-color: pink;
+}
 .default button[type=submit]{
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
