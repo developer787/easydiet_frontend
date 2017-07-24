@@ -1,3 +1,15 @@
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 .default {
   padding-left: 10px;
   padding-bottom: 10px;
@@ -10,9 +22,14 @@
   border-radius: 5px;
   background-color: #FFFFFF;
 }
-.default .listado {
+.listado {
+  width:100%;
   table-layout: fixed;
-  background-color: pink;
+  border-collapse: collapse;
+  vertical-align: text-top;
+}
+.listado div {
+  text-align: left;
 }
 .default button[type=submit]{
   background: #3498db;

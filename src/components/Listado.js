@@ -8,10 +8,10 @@ const cliente = (self) => {
     return users.map((customer) => 
 	<tr>
 	  <td>
-	    <span>{customer.nombre}</span>
+	    <div>{customer.nombre}</div>
 	  </td>
 	  <td>
-	    <span>{customer.apellido}</span>
+	    <div>{customer.apellido}</div>
 	  </td>
 	  <td>
 	      {customer.alergias.map(a=>
@@ -28,15 +28,15 @@ const cliente = (self) => {
 <table className='listado'>
   <thead>
     <tr>
-      <td>
+      <th>
         <span>Nombre</span>
-      </td>
-      <td>
+      </th>
+      <th>
         <span>Apellido</span>
-      </td>
-      <td>
+      </th>
+      <th>
         <span>Alergias</span>
-      </td>
+      </th>
     </tr>
   </thead>
   <tbody>
