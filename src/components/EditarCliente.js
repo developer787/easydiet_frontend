@@ -3,7 +3,7 @@ import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
 import Checkbox from './Checkbox'
 
-class NewCustomerForm extends React.Component {
+class EditarCliente extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -13,14 +13,20 @@ class NewCustomerForm extends React.Component {
       ul: 'aligned', 
       response: {}
     }
+    this.editar = this.editar.bind(this)
+  }
+  editar(){
+    return (
+      <div>Edit Mode.</div>
+    ) 
   }
   render(){
     return (
       <div>
-      Test
+      {this.editar()}
       </div>
     )
   }
 }
 
-export default NewCustomerForm
+export default EditarCliente
