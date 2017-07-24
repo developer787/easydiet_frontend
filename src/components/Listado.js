@@ -1,41 +1,17 @@
 import React, { Component } from 'react'
+ import { Link } from 'react-router-dom'
 import './Listado.css'
 const cliente = (self) => {
   const {users} = self.state.response
-  console.log(users)
-  const user = () => {
-    if(users) {
-    return users.map((customer) => 
-	<tr>
-	  <td>
-	    <div>{customer.nombre}</div>
-	  </td>
-	  <td>
-	    <div>{customer.apellido}</div>
-	  </td>
-	  <td>
-	      {customer.alergias.map(a=>
-	        <div>{a}</div>
-	      )}
-	  </td>
-	</tr>)
-
-    }
-    return <span> Buscando Clientes...</span>
-  }
-  return (
-    <div className='listado'>
+const Table = () => 
 <table className='listado'>
   <thead>
     <tr>
       <th>
-        <span>Nombre</span>
+        <div>Nombre</div>
       </th>
       <th>
-        <span>Apellido</span>
-      </th>
-      <th>
-        <span>Alergias</span>
+        <div>Alergias</div>
       </th>
     </tr>
   </thead>
@@ -43,6 +19,29 @@ const cliente = (self) => {
     {user()} 
   </tbody>
 </table>
+  const user = () => {
+    if(users) {
+    return users.map((customer, i) => {
+      const to = {
+        pathname : '/editar/'+ customer._id,
+        customer: customer}
+       return	(<tr key={i}  onClick={self.handleClick}>
+	  <td>
+      <Link className='link' to={to}>
+	    <div id={customer._id}>{customer.nombre} {customer.apellido}</div>
+      </Link>
+	  </td>
+	  <td>
+	      {customer.alergias.map((a, i)=>
+	        <div key={i}>{a}</div>
+	      )}
+	  </td>
+	</tr>)})}
+    return <tr><td> Buscando Clientes...</td></tr>
+  }
+  return (
+    <div className='container'>
+    {Table()}
     </div>
   )
 }
@@ -51,8 +50,12 @@ class Listado extends Component {
     super(props)
     this.state = {
       response: 'Loading...',
-      formStatus: 'default'}
-
+      selectedUser: '0'
+      }
+  this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(e){
+    console.log(e.target.id)
   }
   componentDidMount(){
     const self = this
@@ -67,13 +70,13 @@ class Listado extends Component {
     })
     .then(function(data) {
       self.setState({ 
-        response: data,
-        formStatus: 'saved'});
+        response: data
+        });
     });
   }
   render(){
     return (
-      <div className={this.state.formStatus}>
+      <div className='default'>
       {cliente(this)}
       </div>
     )
