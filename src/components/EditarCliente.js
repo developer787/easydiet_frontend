@@ -17,7 +17,7 @@ class EditarCliente extends React.Component {
   }
   editar(){
     return (
-      <div>Edit Mode.</div>
+      <div className='default'>Edit Mode.</div>
     ) 
   }
   render(){
