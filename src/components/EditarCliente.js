@@ -18,13 +18,14 @@ class EditarCliente extends React.Component {
     this.createCheckboxes = this.createCheckboxes.bind(this)
     this.createCheckbox = this.createCheckbox.bind(this)
     this.toggleCheckbox = this.toggleCheckbox.bind(this)
+    this.preCheckbox = this.preCheckbox.bind(this)
   }
   componentWillMount = () => {
+    const { customer } = this.props.location
+    this.setState(customer)
     this.selectedCheckboxes = new Set();
   }
   componentDidMount(){
-    const { customer } = this.props.location
-    this.setState(customer)
     //    const { _id, nombre, apellido, alergias } = this.props.location
     //    this.setState({
     //      _id, nombre, apellido, alergias
@@ -89,18 +90,27 @@ class EditarCliente extends React.Component {
     ) 
   }
   toggleCheckbox(label){
-    const { alergias } = this.state.customer.customer
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label)
-    console.log(alergias)
     } else {
       this.selectedCheckboxes.add(label);
+    }
+  }
+  preCheckbox(label){
+    const { customer } = this.state.customer
+    const x = label.toLowerCase()
+    let result = customer.alergias.indexOf(x, 0)
+    if(result >= 0){
+       return true 
+    } else {
+      return false
     }
   }
   createCheckbox(label){
     return <Checkbox
     label={label}
-    handleCheckboxChange={this.toggleCheckbox}
+    preCheck={this.preCheckbox(label)}
+    handleCheckboxChange={this.toggleCheckbox }
     key={label}
     />
   }
@@ -112,9 +122,10 @@ class EditarCliente extends React.Component {
       'Camarones',
       'Cebolla',
       'Nueces'
-  ]
+    ]
 
-  return items.map(this.createCheckbox)
+    const checkboxes = items.map(this.createCheckbox)
+    return checkboxes
   }
   allergyBoxes(){
     return (

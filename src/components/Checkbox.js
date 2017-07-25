@@ -18,10 +18,16 @@ isChecked: !isChecked,
 		handleCheckboxChange(label);
 		}
 
+    componentDidMount(){
+      const {preCheck } = this.props
+      if(preCheck){
+        this.setState({isChecked: true})
+      console.log(preCheck)
+      }
+    }
 render() {
 	const { label } = this.props;
 	const { isChecked } = this.state;
-
 	return (
 			<div className="checkbox">
 			<label>
