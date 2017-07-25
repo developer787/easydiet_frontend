@@ -14,9 +14,9 @@ const items = [
 ]
 class NewCustomerForm extends React.Component {
   constructor(props) {
-    
-const time = Date.now()
-const id = ObjectID.generate(time)
+
+    const time = Date.now()
+    const id = ObjectID.generate(time)
     super(props)
     this.state = {id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
@@ -91,8 +91,8 @@ const id = ObjectID.generate(time)
   }
 
   toggleCheckbox = label => {
-      const index = this.state.alergias.indexOf(label.toLowerCase(),0)
-      const Alergias = this.state.alergias
+    const index = this.state.alergias.indexOf(label.toLowerCase(),0)
+    const Alergias = this.state.alergias
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label)
       if (index > -1) {
@@ -121,17 +121,17 @@ const id = ObjectID.generate(time)
   </li>
   listarAlergias = () => {
     const Alergias = this.state.alergias
-  return  Alergias.map(this.incluirAlergia)
+    return  Alergias.map(this.incluirAlergia)
   }
   render(){
     const message = this.state.response.message ? this.state.response.message : '*verificar datos antes de guardar.';
 
-        let p = null;
-            if (message.charAt(0) === '*') {
-                    p = <p></p>;
-                        } else {
-                                p = <p>{message}</p>;
-                                    }
+    let p = null;
+    if (message.charAt(0) === '*') {
+      p = <p></p>;
+    } else {
+      p = <p>{message}</p>;
+    }
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
@@ -157,7 +157,7 @@ const id = ObjectID.generate(time)
       <div className={this.state.formStatus}>
       <p className='aligned'>
       Seleccione todo ingriediente que no desea incluir en la dieta del cliente.
-      </p>
+        </p>
       <hr />
       {this.createCheckboxes()}
       </div>
@@ -168,14 +168,14 @@ const id = ObjectID.generate(time)
       <hr />
       <p className={'aligned'}>
       Nombre Completo: 
-      </p>
+        </p>
       <strong>
       {this.state.nombre} {this.state.apellido}
       </strong>
       <br />
       <p className={'aligned'}>
       Ingredientes no deseados:
-      </p>
+        </p>
       <ul className={this.state.ul}>
       {this.listarAlergias()}
       </ul>

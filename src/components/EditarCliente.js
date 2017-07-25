@@ -90,10 +90,25 @@ class EditarCliente extends React.Component {
     ) 
   }
   toggleCheckbox(label){
+    const { customer } = this.state.customer
+    const index = customer.alergias.indexOf(label.toLowerCase(),0)
+    const Alergias = customer.alergias
+    console.log(Alergias, index)
+    console.log(this.selectedCheckboxes)
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label)
+      if (index > -1) {
+        Alergias.splice(index, 1)
+        customer.alergias = Alergias
+        console.log(customer)
+        this.setState({customer: {customer}})
+      }
     } else {
       this.selectedCheckboxes.add(label);
+      Alergias.push(label.toLowerCase())
+      customer.alergias = Alergias
+      console.log(customer)
+      this.setState({customer: {customer}})
     }
   }
   preCheckbox(label){
@@ -101,7 +116,8 @@ class EditarCliente extends React.Component {
     const x = label.toLowerCase()
     let result = customer.alergias.indexOf(x, 0)
     if(result >= 0){
-       return true 
+      this.selectedCheckboxes.add(label);
+      return true 
     } else {
       return false
     }
@@ -138,14 +154,58 @@ class EditarCliente extends React.Component {
       </div>
     ) 
   }
-  render(){
-    return (
-      <div>
-      {this.editar()}
-      {this.allergyBoxes()}
-      </div>
-    )
+  incluirAlergia = (alergia, i) =>
+  <li key={i}>
+  {alergia}
+  </li>
+  listarAlergias(){
+    const { customer } = this.state.customer
+    return  customer.alergias.map(this.incluirAlergia)
   }
+  confirmarInfo(){
+    const message = this.state.response.message ? this.state.response.message : '*verificar datos antes de guardar.';
+
+    let p = null;
+    if (message.charAt(0) === '*') {
+      p = <p>{message}</p>;
+    } else {
+      p = <p>{message}</p>;
+    }
+    return (
+      <div className={this.state.formStatus}>
+      <p>
+      Informacion a guardarse
+      </p>
+      <hr />
+      <p className={'aligned'}>
+      Nombre Completo: 
+        </p>
+      <strong>
+      {this.state.nombre} {this.state.apellido}
+      </strong>
+      <br />
+      <p className={'aligned'}>
+      Ingredientes no deseados:
+        </p>
+      <ul className={this.state.ul}>
+      {this.listarAlergias()}
+      </ul>
+      <br />
+      {p}
+      <SubmitButton handleClick={this.handleClick}/>
+      </div>
+    )}
+
+
+    render(){
+      return (
+        <div>
+        {this.editar()}
+        {this.allergyBoxes()}
+        {this.confirmarInfo()}
+        </div>
+      )
+    }
 }
 
 export default EditarCliente
