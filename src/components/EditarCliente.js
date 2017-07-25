@@ -2,6 +2,7 @@ import React from 'react'
 import './EditarCliente.css'
 import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
+import DeleteButton from './DeleteButton'
 import Checkbox from './Checkbox'
 
 class EditarCliente extends React.Component {
@@ -14,11 +15,64 @@ class EditarCliente extends React.Component {
     }
     this.editar = this.editar.bind(this)
     this.customerInfo = this.customerInfo.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.deleteCustomer = this.deleteCustomer.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.createCheckboxes = this.createCheckboxes.bind(this)
     this.createCheckbox = this.createCheckbox.bind(this)
     this.toggleCheckbox = this.toggleCheckbox.bind(this)
     this.preCheckbox = this.preCheckbox.bind(this)
+  }
+  deleteCustomer(){
+    const self = this
+    const {_id } = self.state
+    const payload = {_id }
+    console.log('Deleted')
+    const url = 'https://easydiet-backend-developer787.c9users.io/api/delete'
+    const urlOpts = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }
+    fetch(url, urlOpts)
+    .then(response => response.json())
+    .then(function(data) {
+      self.setState({ 
+        response: data,
+        formStatus: 'saved'});
+    })
+  }
+  handleClick(event){
+    console.log('Help!')
+    const self = this
+    const url = 'https://easydiet-backend-developer787.c9users.io/api/update'
+    const {_id, nombre, apellido, alergias } = self.state
+    const payload = {_id, nombre, apellido, alergias }
+    console.log(payload)
+    const urlOpts = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }
+    console.log(payload)
+    fetch(url, urlOpts)
+    .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      self.setState({ 
+        response: data,
+        formStatus: 'saved'});
+    });
   }
   componentWillMount = () => {
     const { customer } = this.props.location
@@ -187,11 +241,12 @@ class EditarCliente extends React.Component {
       <p className={'aligned'}>
       Ingredientes no deseados:
         </p>
-      <ul className={this.state.ul}>
+      <ul className={'aligned'}>
       {this.listarAlergias()}
       </ul>
       <br />
       {p}
+      <DeleteButton handleClick={this.deleteCustomer}/>
       <SubmitButton handleClick={this.handleClick}/>
       </div>
     )}

@@ -1,0 +1,15 @@
+
+.delete-btn {
+  background: #db9834;
+  background-image: linear-gradient(to bottom, #db9834, #b98029);
+  -webkit-border-radius: 4;
+  -moz-border-radius: 4;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+  color: #ffffff;
+  padding: 10px 20px 10px 20px;
+  border: solid #8d621f 2px;
+  text-decoration: none;
+}
