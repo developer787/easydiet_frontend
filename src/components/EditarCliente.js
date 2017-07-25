@@ -1,4 +1,5 @@
 import React from 'react'
+import './EditarCliente.css'
 import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
 import Checkbox from './Checkbox'
@@ -7,26 +8,51 @@ class EditarCliente extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      id : 0, 
-      alergias: [], 
+      customer: {},
       formStatus: 'default', 
-      ul: 'aligned', 
       response: {}
     }
     this.editar = this.editar.bind(this)
     this.customerInfo = this.customerInfo.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
-  componentWillMount(){
-    const { _id, nombre, apellido, alergias } = this.props.location
-    this.setState({
-      _id, nombre, apellido, alergias
-    })
+  componentDidMount(){
+      const { customer } = this.props.location
+      this.setState(customer)
+//    const { _id, nombre, apellido, alergias } = this.props.location
+//    this.setState({
+//      _id, nombre, apellido, alergias
+//    })
+      console.log(this.state)
+  }
+  handleChange(event){
+    console.log('Change!')
+    if(event.target.name === 'nombre'){
+      console.log(1)
+      const target = event.target
+      const value = target.value
+      const name = target.name
+      this.setState({
+        [name]: value
+      })
+    } else {
+      console.log(2)
+      const target = event.target
+      const value = target.value
+      const name = target.name
+      this.setState({
+        [name]: value
+      })
+    }
+
   }
   customerInfo(){
-    const {nombre, apellido} = this.state
+    const {nombre, apellido, date} = this.state
+    const fecha = new Date(date)
     console.log(nombre, apellido)
     return (
       <div>
+      <div className='blue'>{fecha.toLocaleDateString('en-US')}</div>
       <label>
       Nombre:
         <input 

@@ -1,0 +1,9 @@
+.blue{
+  background-color: #0cf;
+  color: #fff;
+  position: absolute;
+  font-size: 10px;
+  border-radius: 3px;
+  padding: 2px;
+  font-weight: 600;
+}
