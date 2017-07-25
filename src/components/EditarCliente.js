@@ -8,22 +8,28 @@ class EditarCliente extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      customer: {},
+      customer: this.props.location,
       formStatus: 'default', 
       response: {}
     }
     this.editar = this.editar.bind(this)
     this.customerInfo = this.customerInfo.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.createCheckboxes = this.createCheckboxes.bind(this)
+    this.createCheckbox = this.createCheckbox.bind(this)
+    this.toggleCheckbox = this.toggleCheckbox.bind(this)
+  }
+  componentWillMount = () => {
+    this.selectedCheckboxes = new Set();
   }
   componentDidMount(){
-      const { customer } = this.props.location
-      this.setState(customer)
-//    const { _id, nombre, apellido, alergias } = this.props.location
-//    this.setState({
-//      _id, nombre, apellido, alergias
-//    })
-      console.log(this.state)
+    const { customer } = this.props.location
+    this.setState(customer)
+    //    const { _id, nombre, apellido, alergias } = this.props.location
+    //    this.setState({
+    //      _id, nombre, apellido, alergias
+    //    })
+    console.log(this.state.customer)
   }
   handleChange(event){
     console.log('Change!')
@@ -68,7 +74,7 @@ class EditarCliente extends React.Component {
         <input 
       name="apellido"
       type="text" 
-      value={this.state.apellido || ''}
+      value={apellido || ''}
       onChange={this.handleChange} />
       </label>
       </div>
@@ -78,7 +84,46 @@ class EditarCliente extends React.Component {
   editar(){
     return (
       <div className='default'>
-	{this.customerInfo()}
+      {this.customerInfo()}
+      </div>
+    ) 
+  }
+  toggleCheckbox(label){
+    const { alergias } = this.state.customer.customer
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label)
+    console.log(alergias)
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
+  }
+  createCheckbox(label){
+    return <Checkbox
+    label={label}
+    handleCheckboxChange={this.toggleCheckbox}
+    key={label}
+    />
+  }
+  createCheckboxes(){
+    const items = [
+      'Carne',
+      'Pollo',
+      'Pescado',
+      'Camarones',
+      'Cebolla',
+      'Nueces'
+  ]
+
+  return items.map(this.createCheckbox)
+  }
+  allergyBoxes(){
+    return (
+      <div className={this.state.formStatus}>
+      <p className='aligned'>
+      Seleccione todo ingriediente que no desea incluir en la dieta del cliente.
+        </p>
+      <hr />
+      {this.createCheckboxes()}
       </div>
     ) 
   }
@@ -86,6 +131,7 @@ class EditarCliente extends React.Component {
     return (
       <div>
       {this.editar()}
+      {this.allergyBoxes()}
       </div>
     )
   }
