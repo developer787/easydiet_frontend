@@ -52,7 +52,7 @@ class EditarCliente extends React.Component {
     console.log(nombre, apellido)
     return (
       <div>
-      <div className='blue'>{fecha.toLocaleDateString('en-US')}</div>
+      <div className='blue'>miembro desde: {fecha.toLocaleDateString('en-US')}</div>
       <label>
       Nombre:
         <input 
