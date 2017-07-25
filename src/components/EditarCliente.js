@@ -14,10 +14,45 @@ class EditarCliente extends React.Component {
       response: {}
     }
     this.editar = this.editar.bind(this)
+    this.customerInfo = this.customerInfo.bind(this)
   }
+  componentWillMount(){
+    const { _id, nombre, apellido, alergias } = this.props.location
+    this.setState({
+      _id, nombre, apellido, alergias
+    })
+  }
+  customerInfo(){
+    const {nombre, apellido} = this.state
+    console.log(nombre, apellido)
+    return (
+      <div>
+      <label>
+      Nombre:
+        <input 
+      name="nombre"
+      type="text" 
+      value={nombre || ''} 
+      onChange={this.handleChange} />
+      </label>
+      <br />
+      <label>
+      Apellido:
+        <input 
+      name="apellido"
+      type="text" 
+      value={this.state.apellido || ''}
+      onChange={this.handleChange} />
+      </label>
+      </div>
+    )
+  }
+
   editar(){
     return (
-      <div className='default'>Edit Mode.</div>
+      <div className='default'>
+	{this.customerInfo()}
+      </div>
     ) 
   }
   render(){
