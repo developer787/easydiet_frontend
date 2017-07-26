@@ -1,14 +1,16 @@
 import React from 'react'
- import { Link } from 'react-router-dom'
+ import { NavLink } from 'react-router-dom'
 import './Header.css'
 const items = ['/','/listado', '/platos', '/reportes']
 const subLinks = ['/listado', '/clientenuevo']
 
 const createNav = (label, i) => {
     let test = 'test'
+    let exact = false
     switch(label){
       case '/':
         test = 'Inicio'
+        exact = true
         break;
       case '/listado':
         test = 'Clientes'
@@ -21,9 +23,12 @@ const createNav = (label, i) => {
         break;
     }
   return (
-    <Link className={'link'} key={i} to={label}>
-      <span className={'link'} >{test}</span>
-    </Link>
+    <NavLink 
+      activeClassName="active" 
+      exact={exact}
+      className={'link'} key={i} to={label}>
+      <span>{test}</span>
+    </NavLink>
   )
   }
 const createSub = (label, i) => {
@@ -37,11 +42,11 @@ const createSub = (label, i) => {
         break;
     }
   return (
-    <Link className={'link'} key={i} to={label}>
+    <NavLink className={'link'} key={i} to={label}>
       <span style={{ 
         marginLeft: '10px',
         marginRight: '10px'}} className={'link'} >{test}</span>
-    </Link>
+    </NavLink>
   )
   }
 const createNavbar = () => (
