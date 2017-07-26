@@ -53,9 +53,6 @@ const createSubnav = () => (
 const Header = ()=>
   <div>
   <div className='header'>
-   <strong>Easy Diet PR Meal Generator</strong>
-   <br />
-   <hr />
    <div className='navBar'>
    {createNavbar()}
    </div>
