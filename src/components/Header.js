@@ -1,8 +1,8 @@
 import React from 'react'
  import { NavLink } from 'react-router-dom'
 import './Header.css'
-const items = ['/','/listado', '/platos', '/reportes']
-const subLinks = ['/listado', '/clientenuevo']
+const items = ['/','/clientes', '/platos', '/reportes']
+const subLinks = ['/clientes/listado', '/clientes/clientenuevo']
 
 const createNav = (label, i) => {
     let test = 'test'
@@ -12,7 +12,7 @@ const createNav = (label, i) => {
         test = 'Inicio'
         exact = true
         break;
-      case '/listado':
+      case '/clientes':
         test = 'Clientes'
         break;
       case '/platos':
@@ -32,9 +32,14 @@ const createNav = (label, i) => {
   )
   }
 const createSub = (label, i) => {
+    const location = window.location.pathname
+    if(location === '/'){
+      return <span></span>
+
+    } else {
     let test = 'test'
     switch(label){
-      case '/listado':
+      case '/clientes/listado':
         test = 'Ver Todos'
         break;
       default:
@@ -42,12 +47,13 @@ const createSub = (label, i) => {
         break;
     }
   return (
-    <NavLink className={'link'} key={i} to={label}>
-      <span style={{ 
-        marginLeft: '10px',
-        marginRight: '10px'}} className={'link'} >{test}</span>
+    <NavLink activeClassName='sub-active' 
+      className={'link'} key={i} to={label}>
+      <span>{test}</span>
     </NavLink>
   )
+
+    }
   }
 const createNavbar = () => (
     items.map(createNav)

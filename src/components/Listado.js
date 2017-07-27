@@ -23,7 +23,7 @@ const Table = () =>
     if(users) {
     return users.map((customer, i) => {
       const to = {
-        pathname : '/editar/'+ customer._id,
+        pathname : '/editar',
         customer: customer}
        return	(<tr key={i}  onClick={self.handleClick}>
 	  <td>

@@ -1,6 +1,6 @@
 .header {
   background-color: #4F4F4F;
-  border-bottom: 6px solid #1F1F1F;
+  border-bottom: 2px solid #1F1F1F;
   color: #FFFFFF;
   padding: 6px;
   position: fixed;
@@ -12,7 +12,7 @@
 .header .link {
   font-variant: small-caps;
   text-decoration: none;
-  color: white;
+  color: rgb(234, 167, 67);
   padding: 8px;
   font-size: 4vmin;
 }
@@ -22,12 +22,22 @@
 }
 .subnav {
   background-color: rgb(224, 157, 57);
+  border-bottom: 2px solid #1F1F1F;
   padding-top: 60px;
   position: fixed;
   width: 100%;
   top: 0;
 
 }
+.subnav span {
+  margin: 6px;
+}
 .header .active {
   color: #0cf;
+}
+.subnav .sub-active {
+  color: rgb(224, 157, 57);
+  background-color: #1f1f1f;
+  border-top: 10px solid #1f1f1f;
+  box-shadow: inset 0px -1px 1px #0cf;
 }
