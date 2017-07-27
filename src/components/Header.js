@@ -34,7 +34,7 @@ const createNav = (label, i) => {
 const createSub = (label, i) => {
     const location = window.location.pathname
     if(location === '/'){
-      return <span></span>
+      return null
 
     } else {
     let test = 'test'
