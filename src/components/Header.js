@@ -21,7 +21,7 @@ const createSub = (label, i) => {
   const clientesLabels = ['Mostrar Todos', 'Cliente Nuevo']
   return (
     <NavLink 
-    activeClassName="active" 
+    activeClassName="sub-active" 
     className={'link'} key={i} to={label}>
     <span>{clientesLabels[i]}</span>
     </NavLink>
