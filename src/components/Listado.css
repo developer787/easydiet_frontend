@@ -18,6 +18,8 @@ table {
 }
 .listado thead {
   color: white;
+  background-color: #0cf;
+  font-size: 3vmin;
 }
 .listado th div {
   font-size: 4vmin;

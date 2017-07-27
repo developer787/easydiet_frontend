@@ -20,6 +20,7 @@ class NewCustomerForm extends React.Component {
     super(props)
     this.state = {id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
+    this.crearCalendario = this.crearCalendario.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -89,6 +90,54 @@ class NewCustomerForm extends React.Component {
   componentWillMount = () => {
     this.selectedCheckboxes = new Set();
   }
+  crearCalendario(){
+    return (
+      <div className='default'>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+      test
+      </td>
+      <td>
+      test
+      </td>
+      <td>
+      test
+      </td>
+      <td>
+      test
+      </td>
+      <td>
+      test
+      </td>
+      <td>
+      test
+      </td>
+      <td>
+      test
+      </td>
+      </tr>
+
+      </tbody>
+
+      </table>
+      </div>
+      </div>
+    )
+  }
 
   toggleCheckbox = label => {
     const index = this.state.alergias.indexOf(label.toLowerCase(),0)
@@ -154,6 +203,7 @@ class NewCustomerForm extends React.Component {
       onChange={this.handleChange} />
       </label>
       </div>
+      {this.crearCalendario()}
       <div className={this.state.formStatus}>
       <p className='aligned'>
       Seleccione todo ingriediente que no desea incluir en la dieta del cliente.
