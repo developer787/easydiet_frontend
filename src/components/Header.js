@@ -19,11 +19,23 @@ const createNav = (label, i) => {
 }
 const createSub = (label, i) => {
   const clientesLabels = ['Mostrar Todos', 'Cliente Nuevo']
+  const platosLabels = ['Mostrar Todos', 'Plato Nuevo']
+  let labels = []
+  console.log(label)
+  const clienteLabel = /clientes/
+  const platosLabel = /platos/
+  const clienteTest = clienteLabel.test(label)
+  const platosTest = platosLabel.test(label)
+  if(clienteTest){
+    labels = clientesLabels
+  } else if(platosTest) {
+    labels = platosLabels
+  }
   return (
     <NavLink 
     activeClassName="sub-active" 
     className={'link'} key={i} to={label}>
-    <span>{clientesLabels[i]}</span>
+    <span>{labels[i]}</span>
     </NavLink>
   )
 }
@@ -32,12 +44,23 @@ const createNavbar = () => {
   return   headerLinks.map(createNav)
 }
 const createSubnav = () => {
+  const url = window.location.pathname
+  const clientePattern = /clientes/
+  const platosPattern = /platos/
+  const reportesPattern = /reportes/
+  const clientPattValid = clientePattern.test(url)
+  const platosPattValid = platosPattern.test(url)
   if(window.location.pathname === '/'){
     return null
-  } else {
+  } else if(clientPattValid) {
     const clientesLinks = ['/clientes/listado', '/clientes/clientenuevo']
     const Links = clientesLinks.map(createSub)
     return <div className='subnav'>{Links}</div>
+  } else if(platosPattValid){
+    const platosLinks = ['/platos/listado', '/platos/platonuevo']
+    const Links = platosLinks.map(createSub)
+    return <div className='subnav'>{Links}</div>
+
   }
 }
 const Header = ()=>
