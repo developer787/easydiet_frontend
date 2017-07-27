@@ -1,73 +1,52 @@
 import React from 'react'
- import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Header.css'
-const items = ['/','/clientes', '/platos', '/reportes']
-const subLinks = ['/clientes/listado', '/clientes/clientenuevo']
+//const items = ['/','/clientes', '/platos', '/reportes']
+//const platosLinks = ['/platos/listado', '/platos/platonuevo']
 
 const createNav = (label, i) => {
-    let test = 'test'
-    let exact = false
-    switch(label){
-      case '/':
-        test = 'Inicio'
-        exact = true
-        break;
-      case '/clientes':
-        test = 'Clientes'
-        break;
-      case '/platos':
-        test = 'Platos'
-        break;
-      default:
-        test = 'Reportes'
-        break;
-    }
+  const headerLabels = ['Inicio', 'Clientes', 'Platos', 'Reportes']
+  let exact = false
+  label === '/' ? exact = true: exact = false
   return (
     <NavLink 
-      activeClassName="active" 
-      exact={exact}
-      className={'link'} key={i} to={label}>
-      <span>{test}</span>
+    exact={exact}
+    activeClassName="active" 
+    className={'link'} key={i} to={label}>
+    <span>{headerLabels[i]}</span>
     </NavLink>
   )
-  }
+}
 const createSub = (label, i) => {
-    const location = window.location.pathname
-    if(location === '/'){
-      return null
-
-    } else {
-    let test = 'test'
-    switch(label){
-      case '/clientes/listado':
-        test = 'Ver Todos'
-        break;
-      default:
-        test = 'Cliente Nuevo'
-        break;
-    }
+  const clientesLabels = ['Mostrar Todos', 'Cliente Nuevo']
   return (
-    <NavLink activeClassName='sub-active' 
-      className={'link'} key={i} to={label}>
-      <span>{test}</span>
+    <NavLink 
+    activeClassName="active" 
+    className={'link'} key={i} to={label}>
+    <span>{clientesLabels[i]}</span>
     </NavLink>
   )
-
-    }
+}
+const createNavbar = () => {
+  const headerLinks = ['/','/clientes', '/platos', '/reportes']
+  return   headerLinks.map(createNav)
+}
+const createSubnav = () => {
+  if(window.location.pathname === '/'){
+    return null
+  } else {
+    const clientesLinks = ['/clientes/listado', '/clientes/clientenuevo']
+    const Links = clientesLinks.map(createSub)
+    return <div className='subnav'>{Links}</div>
   }
-const createNavbar = () => (
-    items.map(createNav)
-)
-const createSubnav = () => (
-    subLinks.map(createSub)
-)
+}
 const Header = ()=>
-  <div>
-  <div className='header'>
-   <div className='navBar'>
-   {createNavbar()}
-   </div>
-  </div>
-   <div className='subnav'>{createSubnav()}</div>
-  </div>
+<div>
+<div className='header'>
+<div className='navBar'>
+{createNavbar()}
+</div>
+</div>
+{createSubnav()}
+</div>
 export default Header
