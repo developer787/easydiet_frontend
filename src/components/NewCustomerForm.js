@@ -112,7 +112,7 @@ class NewCustomerForm extends React.Component {
         <input 
         type='number'
         className='calendar-input'
-        onChange={alert(1)} />
+        onChange={} />
       </td>
       <td>
       test
