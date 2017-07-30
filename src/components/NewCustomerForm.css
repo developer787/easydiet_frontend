@@ -122,3 +122,23 @@ tr:last-of-type td {
 .aligned {
   text-align: left;
 }
+.listado .calendar-input {
+  width: 100%;
+  text-align: center;
+  border:none;
+  font-size:5vmin;
+  height: 5vmin;
+  font-weight: bold;
+  padding-top:8px;
+}
+
+.listado .calendar-input:focus {
+  background-color:#0cf;
+}
+.listado .calendar-input:invalid {
+  background-color:#fff;
+}
+.listado .calendar-input:valid {
+  background-color:#0be;
+  color: #fff;
+}

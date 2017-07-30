@@ -18,12 +18,31 @@ class NewCustomerForm extends React.Component {
     const time = Date.now()
     const id = ObjectID.generate(time)
     super(props)
-    this.state = {id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
+    this.state = {
+      id : id, 
+      alergias: [], 
+      formStatus: 'default', 
+      ul: 'aligned', 
+      almuerzos: {},
+      cenas: {},
+      response: {}}
     this.handleClick = this.handleClick.bind(this)
     this.crearCalendario = this.crearCalendario.bind(this)
+    this.handleAlmuerzos = this.handleAlmuerzos.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
+  }
+  handleAlmuerzos(event){
+    console.log('calendar')
+      const target = event.target
+      const value = target.value
+      const name = target.name
+      this.setState({
+        almuerzos:{
+        [name]: value
+      }})
+      console.log(this.state.almuerzos)
   }
   handleClick(event){
     console.log('Help!')
@@ -54,8 +73,8 @@ class NewCustomerForm extends React.Component {
     event.preventDefault()
     const self = this
     const url = 'https://easydiet-backend-developer787.c9users.io/api'
-    const {id, nombre, apellido, alergias } = self.state
-    const payload = {id, nombre, apellido, alergias }
+    const {id, almuerzos, nombre, apellido, alergias } = self.state
+    const payload = {id, almuerzos, nombre, apellido, alergias }
     const urlOpts = {
       method: 'post',
       headers: {
@@ -93,6 +112,7 @@ class NewCustomerForm extends React.Component {
   crearCalendario(){
     return (
       <div className='default'>
+      <h4> Almuerzos </h4>
       <div className='container'>
       <table className='listado'>
       <thead>
@@ -110,30 +130,124 @@ class NewCustomerForm extends React.Component {
       <tr>
       <td>
         <input 
+        required
         type='number'
+        name='domingo'
         className='calendar-input'
-        onChange={} />
+        onChange={this.handleAlmuerzos} />
       </td>
       <td>
-      test
+        <input 
+        required
+        type='number'
+        name='lunes'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
       </td>
       <td>
-      test
+        <input 
+        required
+        type='number'
+        name='martes'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
       </td>
       <td>
-      test
+        <input 
+        required
+        type='number'
+        name='miercoles'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
       </td>
       <td>
-      test
+        <input 
+        required
+        type='number'
+        name='jueves'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
       </td>
       <td>
-      test
+        <input 
+        type='number'
+        name='viernes'
+        required
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
       </td>
       <td>
-      test
+        <input 
+        required
+        type='number'
+        name='sabado'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
       </td>
       </tr>
+      </tbody>
 
+      </table>
+      </div>
+      <h4> Cenas </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <input 
+        required
+        type='number'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        type='number'
+        required
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        className='calendar-input'/>
+      </td>
+      </tr>
       </tbody>
 
       </table>
