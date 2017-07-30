@@ -29,6 +29,7 @@ class NewCustomerForm extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.crearCalendario = this.crearCalendario.bind(this)
     this.handleAlmuerzos = this.handleAlmuerzos.bind(this)
+    this.handleCenas = this.handleCenas.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
@@ -40,12 +41,26 @@ class NewCustomerForm extends React.Component {
       const name = target.name
       this.setState({
         almuerzos:{
+          ...this.state.almuerzos,
         [name]: value
       }})
       console.log(this.state.almuerzos)
   }
+  handleCenas(event){
+    console.log('calendar')
+      const target = event.target
+      const value = target.value
+      const name = target.name
+      this.setState({
+        cenas:{
+          ...this.state.cenas,
+        [name]: value
+      }})
+      console.log(this.state.cenas)
+  }
   handleClick(event){
     console.log('Help!')
+    console.log(this.state)
   }
   handleChange(event){
     console.log('Change!')
@@ -73,8 +88,8 @@ class NewCustomerForm extends React.Component {
     event.preventDefault()
     const self = this
     const url = 'https://easydiet-backend-developer787.c9users.io/api'
-    const {id, almuerzos, nombre, apellido, alergias } = self.state
-    const payload = {id, almuerzos, nombre, apellido, alergias }
+    const {id, almuerzos, nombre, cenas, apellido, alergias } = self.state
+    const payload = {id, almuerzos, cenas, nombre, apellido, alergias }
     const urlOpts = {
       method: 'post',
       headers: {
@@ -209,42 +224,56 @@ class NewCustomerForm extends React.Component {
         <input 
         required
         type='number'
+        onChange={this.handleCenas} 
+        name='domingo'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        name='lunes'
+        type='number'
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        name='martes'
+        type='number'
+        onChange={this.handleCenas} 
         className='calendar-input'/>
       </td>
       <td>
         <input 
         required
         type='number'
+        name='miercoles'
+        onChange={this.handleCenas} 
         className='calendar-input'/>
       </td>
       <td>
         <input 
         required
         type='number'
-        className='calendar-input'/>
-      </td>
-      <td>
-        <input 
-        required
-        type='number'
-        className='calendar-input'/>
-      </td>
-      <td>
-        <input 
-        required
-        type='number'
+        name='jueves'
+        onChange={this.handleCenas} 
         className='calendar-input'/>
       </td>
       <td>
         <input 
         type='number'
+        name='viernes'
         required
+        onChange={this.handleCenas} 
         className='calendar-input'/>
       </td>
       <td>
         <input 
         required
+        name='sabado'
         type='number'
+        onChange={this.handleCenas} 
         className='calendar-input'/>
       </td>
       </tr>
