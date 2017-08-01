@@ -146,6 +146,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         type='number'
         name='domingo'
         className='calendar-input'
@@ -155,6 +156,7 @@ class NewCustomerForm extends React.Component {
         <input 
         required
         type='number'
+        defaultValue='0'
         name='lunes'
         className='calendar-input'
         onChange={this.handleAlmuerzos} />
@@ -163,6 +165,7 @@ class NewCustomerForm extends React.Component {
         <input 
         required
         type='number'
+        defaultValue='0'
         name='martes'
         className='calendar-input'
         onChange={this.handleAlmuerzos} />
@@ -170,6 +173,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         type='number'
         name='miercoles'
         className='calendar-input'
@@ -178,6 +182,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         type='number'
         name='jueves'
         className='calendar-input'
@@ -187,6 +192,7 @@ class NewCustomerForm extends React.Component {
         <input 
         type='number'
         name='viernes'
+        defaultValue='0'
         required
         className='calendar-input'
         onChange={this.handleAlmuerzos} />
@@ -197,6 +203,7 @@ class NewCustomerForm extends React.Component {
         type='number'
         name='sabado'
         className='calendar-input'
+        defaultValue='0'
         onChange={this.handleAlmuerzos} />
       </td>
       </tr>
@@ -224,6 +231,7 @@ class NewCustomerForm extends React.Component {
         <input 
         required
         type='number'
+        defaultValue='0'
         onChange={this.handleCenas} 
         name='domingo'
         className='calendar-input'/>
@@ -231,6 +239,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         name='lunes'
         type='number'
         onChange={this.handleCenas} 
@@ -239,6 +248,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         name='martes'
         type='number'
         onChange={this.handleCenas} 
@@ -248,6 +258,7 @@ class NewCustomerForm extends React.Component {
         <input 
         required
         type='number'
+        defaultValue='0'
         name='miercoles'
         onChange={this.handleCenas} 
         className='calendar-input'/>
@@ -255,6 +266,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         type='number'
         name='jueves'
         onChange={this.handleCenas} 
@@ -264,6 +276,7 @@ class NewCustomerForm extends React.Component {
         <input 
         type='number'
         name='viernes'
+        defaultValue='0'
         required
         onChange={this.handleCenas} 
         className='calendar-input'/>
@@ -271,6 +284,7 @@ class NewCustomerForm extends React.Component {
       <td>
         <input 
         required
+        defaultValue='0'
         name='sabado'
         type='number'
         onChange={this.handleCenas} 
@@ -368,7 +382,139 @@ class NewCustomerForm extends React.Component {
       <strong>
       {this.state.nombre} {this.state.apellido}
       </strong>
-      <br />
+      <p className={'aligned'}>
+      Dias de consumo:
+        </p>
+      <div className='default'>
+      <h4> Almuerzos </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.domingo}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.lunes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.martes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.miercoles}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.jueves}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.viernes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.sabado}
+        </span>
+      </td>
+      </tr>
+      </tbody>
+
+      </table>
+      </div>
+      <h4> Cenas </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.domingo}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.lunes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.martes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.miercoles}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.jueves}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.viernes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.sabado}
+        </span>
+      </td>
+      </tr>
+      </tbody>
+
+      </table>
+      </div>
+      </div>
+      
+      
       <p className={'aligned'}>
       Ingredientes no deseados:
         </p>
