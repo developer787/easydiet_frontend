@@ -18,15 +18,26 @@ class NewCustomerForm extends React.Component {
     const time = Date.now()
     const id = ObjectID.generate(time)
     super(props)
-    this.state = {id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
+    this.state = {_id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
   }
+  /**
+   * Esto Handle Click  en el button de guardar
+   * @param {any} event 
+   * @memberOf NewCustomerForm
+   */
   handleClick(event){
     console.log('Help!')
   }
+
+  /**
+   * Esto handle change del text field
+   * @param {any} event 
+   * @memberOf NewCustomerForm
+   */
   handleChange(event){
     console.log('Change!')
     if(event.target.name === 'nombre'){
@@ -48,13 +59,20 @@ class NewCustomerForm extends React.Component {
     }
 
   }
+
+  /**
+   * Esto Handle Submit del Guardar Button
+   * @param {any} event 
+   * @memberOf NewCustomerForm
+   */
   handleSubmit(event){
     console.log(this.state.id)
     event.preventDefault()
     const self = this
-    const url = 'https://easydiet-backend-developer787.c9users.io/api'
-    const {id, nombre, apellido, alergias } = self.state
-    const payload = {id, nombre, apellido, alergias }
+    // const url = 'https://easydiet-backend-developer787.c9users.io/api/crearplato'
+    const url = 'http://localhost:3000/api/crearplato'
+    const {_id, nombre,alergias} = self.state
+    const payload = {_id, nombre,alergias}
     const urlOpts = {
       method: 'post',
       headers: {
@@ -63,7 +81,7 @@ class NewCustomerForm extends React.Component {
       },
       body: JSON.stringify(payload)
     }
-    console.log(payload)
+    console.log("payload :" ,payload)
     fetch(url, urlOpts)
     .then(function(response) {
       if (response.status >= 400) {
@@ -77,6 +95,12 @@ class NewCustomerForm extends React.Component {
         formStatus: 'saved'});
     });
   }
+
+  /**
+   * Esto Handle Input Changes
+   * @param {any} event  
+   * @memberOf NewCustomerForm
+   */
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -86,6 +110,11 @@ class NewCustomerForm extends React.Component {
       [name]: value
     });
   }
+
+  /**
+   * React Method 
+   * @memberOf NewCustomerForm
+   */
   componentWillMount = () => {
     this.selectedCheckboxes = new Set();
   }
@@ -123,7 +152,9 @@ class NewCustomerForm extends React.Component {
     const Alergias = this.state.alergias
     return  Alergias.map(this.incluirAlergia)
   }
+
   render(){
+    // If Statement
     const message = this.state.response.message ? this.state.response.message : '*verificar datos antes de guardar.';
 
     let p = null;
@@ -132,6 +163,7 @@ class NewCustomerForm extends React.Component {
     } else {
       p = <p>{message}</p>;
     }
+
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
