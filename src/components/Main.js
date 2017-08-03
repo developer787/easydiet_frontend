@@ -8,6 +8,7 @@ import Listado from './Listado'
 import NewCustomerForm from './NewCustomerForm'
 import NewPlatoForm from './NewPlatoForm'
 import NoMatch from './NoMatch'
+import PlatoListados from './PlatoListados'
 
 const Main = () => (
   <main>
@@ -18,7 +19,9 @@ const Main = () => (
   <Route path="/clientes/clientenuevo" component={NewCustomerForm}/>
   <Route path="/clientes/listado" component={Listado}/>
   <Route path="/clientes/editar" component={EditarCliente}/>
-  <Route exact path="/platos" component={NewPlatoForm}/>
+  <Route exact path="/platos" component={Reportes}/>
+  <Route path="/platos/platonuevo" component={NewPlatoForm}/>
+  <Route path="/platos/listado" component={PlatoListados}/>
   <Route exact path="/reportes" component={Reportes}/>
   <Route path="*" component={NoMatch}/>
   </Switch>
