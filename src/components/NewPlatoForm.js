@@ -69,8 +69,8 @@ class NewCustomerForm extends React.Component {
     console.log(this.state.id)
     event.preventDefault()
     const self = this
-    // const url = 'https://easydiet-backend-developer787.c9users.io/api/crearplato'
-    const url = 'http://localhost:3000/api/crearplato'
+    const url = 'https://easydiet-backend-developer787.c9users.io/api/crearplato'
+    //const url = 'http://localhost:3000/api/crearplato'
     const {_id, nombre,alergias} = self.state
     const payload = {_id, nombre,alergias}
     const urlOpts = {

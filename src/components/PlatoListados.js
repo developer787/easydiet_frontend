@@ -2,8 +2,7 @@ import React, { Component } from 'react'
  import { Link } from 'react-router-dom'
  import './Listado.css'
 const cliente = (self) => {
-  const {users} = self.state.response
-//   const {aray} = self.state.response
+  const {platos} = self.state.response
 const Table = () => 
 <table className='listado'>
   <thead>
@@ -23,8 +22,8 @@ const Table = () =>
 </table>
 
   const user = () => {
-    if(users) {
-    return users.map((customer, i) => {
+    if(platos) {
+    return platos.map((customer, i) => {
       const to = {
         pathname : '/clientes/editar',
         customer: customer}
@@ -33,11 +32,6 @@ const Table = () =>
       <Link className='link' to={to}>
 	    <div id={customer._id}>{customer.nombre} {customer.apellido}</div>
       </Link>
-	  </td>
-	  <td>
-	      {customer.alergias.map((a, i)=>
-	        <div key={i}>{a}</div>
-	      )}
 	  </td>
 	</tr>)})}
     return <tr><td> Buscando Platos...</td></tr> 
@@ -65,8 +59,8 @@ class PlatoListados extends Component {
   }
   componentDidMount(){
     const self = this
-    // const url = 'https://easydiet-backend-developer787.c9users.io/api/platos'
-    const url = 'http://localhost:3000/api/platos'
+    const url = 'https://easydiet-backend-developer787.c9users.io/api/platos'
+//    const url = 'http://localhost:3000/api/platos'
     console.log('MOUNTED')
     fetch(url)
     .then(function(response) {
