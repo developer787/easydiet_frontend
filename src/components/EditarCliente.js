@@ -16,12 +16,188 @@ class EditarCliente extends React.Component {
     this.editar = this.editar.bind(this)
     this.customerInfo = this.customerInfo.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.crearCalendario = this.crearCalendario.bind(this)
     this.deleteCustomer = this.deleteCustomer.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.createCheckboxes = this.createCheckboxes.bind(this)
     this.createCheckbox = this.createCheckbox.bind(this)
     this.toggleCheckbox = this.toggleCheckbox.bind(this)
     this.preCheckbox = this.preCheckbox.bind(this)
+  }
+  crearCalendario(){
+    const customer = this.state.customer.customer
+    return (
+      <div className='default'>
+      <h4> Almuerzos </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <input 
+        required
+        defaultValue={customer.almuerzos.domingo}
+        type='number'
+        name='domingo'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        defaultValue={customer.almuerzos.lunes}
+        name='lunes'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        defaultValue={customer.almuerzos.martes}
+        name='martes'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.almuerzos.miercoles}
+        type='number'
+        name='miercoles'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.almuerzos.jueves}
+        type='number'
+        name='jueves'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      <td>
+        <input 
+        type='number'
+        defaultValue={customer.almuerzos.viernes}
+        name='viernes'
+        required
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.almuerzos.sabado}
+        type='number'
+        name='sabado'
+        className='calendar-input'
+        onChange={this.handleAlmuerzos} />
+      </td>
+      </tr>
+      </tbody>
+
+      </table>
+      </div>
+      <h4> Cenas </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <input 
+        required
+        type='number'
+        defaultValue={customer.cenas.domingo}
+        onChange={this.handleCenas} 
+        name='domingo'
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.cenas.lunes}
+        name='lunes'
+        type='number'
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.cenas.martes}
+        name='martes'
+        type='number'
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        type='number'
+        defaultValue={customer.cenas.miercoles}
+        name='miercoles'
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.cenas.jueves}
+        type='number'
+        name='jueves'
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        type='number'
+        name='viernes'
+        defaultValue={customer.cenas.viernes}
+        required
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      <td>
+        <input 
+        required
+        defaultValue={customer.cenas.sabado}
+        name='sabado'
+        type='number'
+        onChange={this.handleCenas} 
+        className='calendar-input'/>
+      </td>
+      </tr>
+      </tbody>
+
+      </table>
+      </div>
+      </div>
+    )
   }
   deleteCustomer(){
     const self = this
@@ -238,6 +414,134 @@ class EditarCliente extends React.Component {
       {this.state.nombre} {this.state.apellido}
       </strong>
       <br />
+      <div className='default'>
+      <h4> Almuerzos </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.domingo}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.lunes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.martes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.miercoles}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.jueves}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.viernes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.almuerzos.sabado}
+        </span>
+      </td>
+      </tr>
+      </tbody>
+
+      </table>
+      </div>
+      <h4> Cenas </h4>
+      <div className='container'>
+      <table className='listado'>
+      <thead>
+      <tr>
+        <th>Domingo</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miercoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+        <th>Sabado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.domingo}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.lunes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.martes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.miercoles}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.jueves}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.viernes}
+        </span>
+      </td>
+      <td>
+        <span 
+        className='calendar-input'>
+        {this.state.cenas.sabado}
+        </span>
+      </td>
+      </tr>
+      </tbody>
+
+      </table>
+      </div>
+      </div>
       <p className={'aligned'}>
       Ingredientes no deseados:
         </p>
@@ -256,6 +560,7 @@ class EditarCliente extends React.Component {
       return (
         <div>
         {this.editar()}
+        {this.crearCalendario()}
         {this.allergyBoxes()}
         {this.confirmarInfo()}
         </div>
