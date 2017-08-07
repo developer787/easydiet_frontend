@@ -2,6 +2,9 @@ import React from 'react'
 import './NewCustomerForm.css'
 import SubmitButton from './SubmitButton'
 import Checkbox from './Checkbox'
+import PlatoInfo from './PlatoInfo'
+import Ingredientes from './Ingredientes'
+import GuardarPlato from './GuardarPlato'
 import ObjectID from 'bson-objectid'
 
 const items = [
@@ -18,7 +21,7 @@ class NewCustomerForm extends React.Component {
     const time = Date.now()
     const id = ObjectID.generate(time)
     super(props)
-    this.state = {_id : id, ingredientes: [], formStatus: 'default', ul: 'aligned', response: {}}
+    this.state = {_id : id,alergias: [], ingredientes: [], formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -71,7 +74,8 @@ class NewCustomerForm extends React.Component {
     const self = this
     const url = 'https://easydiet-backend-developer787.c9users.io/api/crearplato'
     //const url = 'http://localhost:3000/api/crearplato'
-    const {_id, nombre,ingredientes} = self.state
+    const {_id, nombre,ingredientes, alergias} = self.state
+    alergias.map(e=>ingredientes.push(e))
     const payload = {_id, nombre,ingredientes}
     const urlOpts = {
       method: 'post',
@@ -167,45 +171,9 @@ class NewCustomerForm extends React.Component {
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
-      <div className={this.state.formStatus}>
-      <label>
-      Nombre Del Plato:
-        <input 
-      name="nombre"
-      type="text" 
-      value={this.state.nombre || ''} 
-      onChange={this.handleChange} />
-      </label>
-      </div>
-      <div className={this.state.formStatus}>
-      <p className='aligned'>
-      Seleccione todos los ingredientes que contiene la receta de este plato.
-        </p>
-      <hr />
-      {this.createCheckboxes()}
-      </div>
-      <div className={this.state.formStatus}>
-      <p>
-      Informacion a guardarse
-      </p>
-      <hr />
-      <p className={'aligned'}>
-      Plato: 
-        </p>
-      <strong>
-      {this.state.nombre} {this.state.apellido}
-      </strong>
-      <br />
-      <p className={'aligned'}>
-      Ingredientes:
-        </p>
-      <ul className={this.state.ul}>
-      {this.listarAlergias()}
-      </ul>
-      <br />
-      {p}
-      <SubmitButton handleClick={this.handleClick}/>
-      </div>
+      {PlatoInfo(this)}
+      {Ingredientes(this)}
+      {GuardarPlato(this)}
       </form>
       </div>
     )
