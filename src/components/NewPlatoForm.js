@@ -18,7 +18,7 @@ class NewCustomerForm extends React.Component {
     const time = Date.now()
     const id = ObjectID.generate(time)
     super(props)
-    this.state = {_id : id, alergias: [], formStatus: 'default', ul: 'aligned', response: {}}
+    this.state = {_id : id, ingredientes: [], formStatus: 'default', ul: 'aligned', response: {}}
     this.handleClick = this.handleClick.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -71,8 +71,8 @@ class NewCustomerForm extends React.Component {
     const self = this
     const url = 'https://easydiet-backend-developer787.c9users.io/api/crearplato'
     //const url = 'http://localhost:3000/api/crearplato'
-    const {_id, nombre,alergias} = self.state
-    const payload = {_id, nombre,alergias}
+    const {_id, nombre,ingredientes} = self.state
+    const payload = {_id, nombre,ingredientes}
     const urlOpts = {
       method: 'post',
       headers: {
@@ -120,18 +120,18 @@ class NewCustomerForm extends React.Component {
   }
 
   toggleCheckbox = label => {
-    const index = this.state.alergias.indexOf(label.toLowerCase(),0)
-    const Alergias = this.state.alergias
+    const index = this.state.ingredientes.indexOf(label.toLowerCase(),0)
+    const Alergias = this.state.ingredientes
     if (this.selectedCheckboxes.has(label)) {
       this.selectedCheckboxes.delete(label)
       if (index > -1) {
         Alergias.splice(index, 1)
-        this.setState({alergias: Alergias})
+        this.setState({ingredientes: Alergias})
       }
     } else {
       this.selectedCheckboxes.add(label);
       Alergias.push(label.toLowerCase())
-      this.setState({alergias: Alergias})
+      this.setState({ingredientes: Alergias})
     }
   }
   createCheckbox = label => (
@@ -149,7 +149,7 @@ class NewCustomerForm extends React.Component {
   {alergia}
   </li>
   listarAlergias = () => {
-    const Alergias = this.state.alergias
+    const Alergias = this.state.ingredientes
     return  Alergias.map(this.incluirAlergia)
   }
 

@@ -2,7 +2,7 @@
   padding: 10px;
   border: 2px solid;
   width: 90%;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   margin-bottom: 4px;
   border-radius: 5px;
@@ -35,9 +35,9 @@
   margin: 4px;
 }
 .saved {
-  border: 2px solid #4FF27F;
-  width: 95%;
-  max-width: 600px;
+  border: 2px solid #0cf;
+  width: 90%;
+  max-width: 800px;
   margin: 0 auto;
   border-radius: 5px;
   background-color: #FFFFFF;
@@ -92,9 +92,11 @@ table {
 .listado thead {
   color: white;
 }
+.listado th {
+  padding: 4px;
+}
 .listado th div {
   font-size: 4vmin;
-  padding: 4px;
   background: #0cf;
 }
 .listado th:first-child div {
@@ -105,6 +107,9 @@ table {
   text-indent: 4px;
   padding: 2px;
 }
+.listado label {
+  font-size: 2.8vmin;
+}
 tr:nth-child(even) td {
   background: #f1f1f1;
 }
@@ -112,21 +117,16 @@ tr:nth-child(even) td {
 tr:last-of-type td {
   box-shadow: inset 0 -1px 0 #fff; 
 }
-.container {
-  border: 1px solid #0cf;
-  border-radius: 5px 5px 0 0;
-}
 .aligned {
   text-align: left;
 }
 .listado .calendar-input {
-  width: 100%;
+  width: 80%;
   text-align: center;
   border:none;
   font-size:5vmin;
   height: 5vmin;
   font-weight: bold;
-  padding-top:8px;
 }
 
 .listado .calendar-input:focus {
