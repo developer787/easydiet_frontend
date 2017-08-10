@@ -25,11 +25,8 @@ class ReporteSemanal extends React.Component {
   }
   render(){
     return (
-      <div className='default'>
-        <table className='cheoStyle'>
-          {head()}
-          {body(this.state)}
-        </table>
+      <div>
+        {body(this.state)}
       </div>
     )
   }

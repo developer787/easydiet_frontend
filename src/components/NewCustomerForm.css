@@ -2,7 +2,6 @@
   padding: 10px;
   border: 2px solid;
   width: 90%;
-  max-width: 800px;
   margin: 0 auto;
   margin-bottom: 4px;
   border-radius: 5px;
@@ -16,6 +15,14 @@
 .cheoStyle th {
   font-size: 4vmin;
   padding: 4px;
+}
+.cheoStyle td {
+  text-align: left;
+  font-size: 3vmin;
+  text-indent: 6px;
+  background-color: #555;
+  padding: 4px;
+  color: #0cf;
 }
 .default button[type=submit]{
   background: #3498db;

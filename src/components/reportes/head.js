@@ -6,7 +6,6 @@ const labels = (label) => (
 const head = () => (
   <thead>
     <tr>
-    {labels('Cliente')}
     {labels('dom')}
     {labels('lun')}
     {labels('mar')}
