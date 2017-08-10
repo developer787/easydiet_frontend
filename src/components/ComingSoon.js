@@ -1,7 +1,6 @@
 import React from 'react'
-import ReporteSemanal from './ReporteSemanal'
 const Reportes = () => 
 <div>
-  <ReporteSemanal />
+ <h3> Coming Soon... </h3>
 </div>
 export default Reportes

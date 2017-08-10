@@ -8,6 +8,15 @@
   border-radius: 5px;
   background-color: #FFFFFF;
 }
+.cheoStyle {
+  background-color: #999;
+  color: #fff;
+  width: 100%;
+}
+.cheoStyle th {
+  font-size: 4vmin;
+  padding: 4px;
+}
 .default button[type=submit]{
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -115,7 +124,7 @@ tr:nth-child(even) td {
 }
 
 tr:last-of-type td {
-  box-shadow: inset 0 -1px 0 #fff; 
+/*  box-shadow: inset 0 -1px 0 #fff; */
 }
 .aligned {
   text-align: left;
