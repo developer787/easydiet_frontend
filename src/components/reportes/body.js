@@ -1,11 +1,11 @@
 import React from 'react'
 import head from './head'
 
-const body = (clientes) => {
-  console.log(clientes)
+const Body = (clientes) => {
   const report = clientes ? clientes.response.report : []
   const reportTile = (e,i)=>{
-    const almDom = (cantidad)=>{
+    const getAlmuerzos = (dia)=>{
+      const cantidad = e.almuerzos[dia]
       console.log(cantidad)
       const escogerPlato = ()=>{
         const getRand = (min, max) => {
@@ -36,21 +36,53 @@ const body = (clientes) => {
         <div> {escogerPlato()} </div>
       )
     }
+    const dias = [
+      'domingo','lunes','martes','miercoles',
+      'jueves', 'viernes', 'sabado'
+    ]
+    const crearAlmuerzos = (e,i)=>{
+      let almuerzos = getAlmuerzos(e)
+      return <td key={e}>{almuerzos}</td>
+    }
+    const body = () =>(
+      <tr>
+      <td>A</td>
+      <td>B</td>
+      </tr>
+    )
     return(
       <div key={i} className='default'>
       <h3>{e.nombre} {e.apellido}</h3>
-      <div><span>Almuerzos</span></div>
+      <div className='cheoTitle'><span>Almuerzos</span></div>
       <table className='cheoStyle'>
-      {head()}
+      {head('domingo', 'lunes')}
       <tbody>
-      <tr><td>{almDom(e.almuerzos.domingo)}</td></tr>
+      {body('domingo', 'lunes')}
       </tbody>
       </table>
-      <div><span>Cenas</span></div>
       <table className='cheoStyle'>
-      {head()}
+      {head('martes', 'miercoles')}
       <tbody>
-      <tr><td>A</td></tr>
+      {body('martes', 'miercoles')}
+      </tbody>
+      </table>
+      <table className='cheoStyle'>
+      {head('jueves', 'viernes')}
+      <tbody>
+      {body('jueves', 'viernes')}
+      </tbody>
+      </table>
+      <table className='cheoStyle'>
+      {head('sabado', 'comentarios')}
+      <tbody>
+      {body('sabado', 'comentarios')}
+      </tbody>
+      </table>
+      <br />
+      <div className='cheoTitle'><span>Cenas</span></div>
+      <table className='cheoStyle'>
+      {head('domingo', 'lunes')}
+      <tbody>
       </tbody>
       </table>
       </div> 
@@ -63,4 +95,4 @@ const body = (clientes) => {
     </div> 
   )
 }
-export default body
+export default Body
